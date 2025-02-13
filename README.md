@@ -41,7 +41,7 @@ git clone git@github.com:klefstad-teaching/ics-45c-hw5-<YourGitHubUserName>.git 
     └── triangle.hpp
 ```
 
-Overview and Objectives
+## Overview and Objectives
 
 Homework 6 uses the C++ concepts of **class hierarchy** with **inheritance** and **polymorphism** implemented by **virtual functions**, to build a class hierarchy of 2D geometric `Shapes` collected to form a `Picture`, which is a **linked list** of `Shape` pointers. The base class named `Shape` is extended by derived classes `Circle`, `Rectangle`, and `Triangle`. Base class `Shape` contains virtual functions to print the names of the `Shapes`, calculate their areas, and draw them with simple character graphics. Each derived class inherits these virtual functions from the base class `Shape` and **overrides** them as needed to calculate the area and (for example, to calculate the area with the correct function for its specific shape).
 
@@ -51,7 +51,7 @@ Next, a class `Picture` holds a linked list of pointers to `Shapes`. Class `Pict
 
 Homework 6 demonstrates the object-oriented programming principles of class inheritance and virtual functions to build a modular, reusable, and extensible framework, by defining a base class and deriving subclasses from it, using inheritance and polymorphism.
 
-Good design of the virtual functions, with code that can handle objects of different types in a uniform manner, achieves polymorphism, allowing objects of different classes to be treated as if they were of the same type. You also learn how to use dynamic binding through these virtual functions, to ensure that the correct function is called at runtime based on the dynamic type of object being referenced.
+Good design of the virtual functions, with code that can handle objects of different types in a uniform manner, achieves **polymorphism**, allowing objects of different classes to be treated as if they were of the same type. You also learn how to use **dynamic binding** through these virtual functions, to ensure that the correct function is called at runtime based on the dynamic type of object being referenced.
 
 Homework 6 uses a linked list, for additional practice to gain proficiency in using them. Because `Shapes` must be kept in the same order that they are added to a picture, they must be added to the **end** of the list. A `tail` pointer is needed to allow efficient  addition of new elements to the end of the linked list.
 
@@ -98,14 +98,14 @@ Three classes, `Circle`, `Rectangle`, and `Triangle`, are derived directly from 
    - `circle.cpp` also `#include <numbers>`, for `pi`
    - `triangle.cpp` also `#include <algorithm>` for `std::max`
 
-For example, class `Triangle` is declared in file `triangle.hpp` which `#include shape.hpp`.  class `Triangle` methods are defined in file `triangle.cpp` which `#include triangle.hpp`. (Generally, don’t `#include .cpp` files, and don’t directly compile `.hpp` files. Instead, directly compile `.cpp` files and link them together to create executable files.)
+For example, class `Triangle` is declared in file `triangle.hpp` which `#include shape.hpp`.  Class `Triangle` methods are defined in file `triangle.cpp` which `#include triangle.hpp`. (Generally, don’t `#include .cpp` files, and don’t directly compile `.hpp` files. Instead, directly compile `.cpp` files and link them together to create executable files.)
 
 Each of these derived classes has the data members and functions similar to those shown in the screenshot below for class Circle, but with these data members specific to its own dimensions:
 
  - `Circle:  radius`
- - `Rectangle:  width, height` ( width is drawn horizontally, and height vertically, and order matters in the drawing algorithm)
+ - `Rectangle:  width, height` ( width is drawn horizontally, and height vertically, and **order matters** in the drawing algorithm)
  - `Triangle:  base, height`
- - `Square:  side` (derived from Rectangle, so use width and height)
+ - `Square:  side` (derived from `Rectangle`, so use `width` and `height`)
 
 Methods for the `area()` for each derived class must be implemented correctly, using the appropriate calculation for the area of a Circle vs Rectangle vs Triangle.
 
@@ -117,7 +117,7 @@ circle.hpp screenshot
 
 Methods for `draw()` are provided in the screenshots below. Please use them so that your output matches the autograder’s expectations.
 
-> Be sure to reproduce the single space in the drawing algorithms.
+> **Be sure to reproduce the single space in the drawing algorithms.**
 
 Circle draw() screenshot
 
@@ -137,7 +137,7 @@ Derive a fourth class, `Square`, from `Rectangle`, in the files `square.hpp/.cpp
 
 Because `Square` is derived from a concrete class, rather than an abstract base class, it can inherit method definitions. We want **`class Square`** to inherit definitions of `area()` and `draw()` from `Rectangle`—which means you must not define an `area()` or `draw()` method in class `Square`.
 
-Square’s constructor should take only the parameters:  `center`,  `name`, and a `side`. It must call the `Rectangle` constructor, passing in the appropriate parameters.
+`Square`’s constructor should take only the parameters:  `center`,  `name`, and a `side`. It must call the `Rectangle` constructor, passing in the appropriate parameters.
 
 ## 3 class Picture and struct ListNode
 
@@ -158,7 +158,7 @@ Class Picture has the following methods:
     - `void draw_all(ostream& out)` draws the `Shapes` in this `Picture` in the order that the `Shapes` were added to this `Picture`
     - `double total_area() const` returns the sum of areas of all the `Shapes` in this `Picture`
  - The destructor must clean up your `Picture` when it dies, freeing all memory that it owns
- - `swap(Picture& other)` swaps data in this picture with other
+ - `swap(Picture& other)` swaps data in this picture with `other`
  - valid copy and move constructor
  - valid copy and move assignment
 
@@ -204,36 +204,36 @@ First, build a framework composed of class `Shape` and class `Picture`. Populate
 
 1. Write a first draft of class `Shape` with constructor, destructor, data members, and `print()`. As usual, postpone writing any destructors until the final steps.
 2. Write a first draft of class `Picture`, with
-    1. nested struct `ListNode`,
-    2. the data members `head` and `tail`,
-    3. the constructor,
-    4. `add()`, and
-    5. `print_all()`.
+    a. nested struct `ListNode`,
+    b. the data members `head` and `tail`,
+    c. the constructor,
+    d. `add()`, and
+    e. `print_all()`.
 3. Write a first draft of class `Circle` derived from `Shape`
-    1. Add a data member `radius` of type `int`.
-    2. Implement the constructor.
-    3. Inherit the `print()` method from `Shape`.
-    4. Define the copy constructor for `Circle` to be the default, but keep it `protected`.
-    5. Write a definition of `clone()` that returns a new `Circle` copy constructed from this `Circle`.
-    6. Be sure to make class `Circle` concrete, which means giving definitions for all virtual functions that are not fully implemented yet. This includes `draw()` and `area()`. For this first draft, have `draw()` do nothing and have `area()` return `0.0`.
+    a. Add a data member `radius` of type `int`.
+    b. Implement the constructor.
+    c. Inherit the `print()` method from `Shape`.
+    d. Define the copy constructor for `Circle` to be the default, but keep it `protected`.
+    e. Write a definition of `clone()` that returns a new `Circle` copy constructed from this `Circle`.
+    f. Be sure to make class `Circle` concrete, which means giving definitions for all virtual functions that are not fully implemented yet. These include `draw()` and `area()`. For this first draft, have `draw()` do nothing and have `area()` return `0.0`.
 4. Write a first draft of `main()` in `standard_main.cpp` following the screenshot, but comment out all the shapes except for `Circle` and comment out the lines of code that make calls to methods you have not yet defined, such as `draw_all()` and `total_area()`:
-    1. Declare a `Picture`, named collage
-    2. add a `Circle` to the `Picture`,
-    3. call `print_all()` on the `Picture`.
+    a. Declare a `Picture`, named collage
+    b. add a `Circle` to the `Picture`,
+    c. call `print_all()` on the `Picture`.
 5. Get all this working, using the sanitizers and/or `valgrind` regularly to help detect memory errors.  At this stage, ignore memory leaks, but fix any other memory errors.
 6. Add the method `draw_all()` to `Picture` and the method `draw()` to `Circle`. Extend `main()` to call `draw_all()`. Test it, get it working.
 7. Add `total_area()` to `Picture` and `area()` to `Circle`. Extend `main()` to call `total_area()`. Test it, get it all working.
-    `Total area = 1256.64`  **// example for format only, not value**
+    `Total area = 1256.64`  **// example for format only, NOT value**
 
 ## Extend the framework with more derived classes, one at a time
 
-8. Now fully implement the next derived class, `Rectangle`. (Notice that `Rectangle` has two dimensions, `width` and `height`, where `width` is drawn horizontally, and `height` vertically, and order matters in the drawing algorithm.) Test it, get it all working.
+8. Now fully implement the next derived class, `Rectangle`. (Notice that `Rectangle` has two dimensions, `width` and `height`, where `width` is drawn horizontally, and `height` vertically, and **order matters** in the drawing algorithm.) Test it, get it all working.
 9. Repeat Step 8 for class `Triangle`.
 10. Now, derive`Square` from class `Rectangle`, inheriting its methods.
 11. Modify the `print()` method in class `Shape` to also print the area of this `Shape` in the format below. Notice the effect of this one change!
     `Circle_1 at (0, 0) area = 12.5664` **// example for format only, not value**
 12. Modify `print_all()` to also call `draw()` for this Shape, after it calls `print()`.
-13. Finally, write all necessary destructors. As usual, cross your fingers and pray. 🙏 At this stage, you must ensure you have no memory leaks and no other memory errors. Remember, whoever owns the storage must eventually delete it.
+13. Finally, write all necessary destructors. As usual, cross your fingers and pray. 🙏 At this stage, you must ensure you have no memory leaks and no other memory errors. **Remember, whoever owns the storage must eventually delete it.**
     
 Screenshot of sample output of standard_main
 
