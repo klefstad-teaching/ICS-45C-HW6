@@ -11,7 +11,7 @@ Class inheritance with a Picture of 2D Shapes
 5. Copy that link
 6. Go to your hub and go into the ICS45C folder, and open up the terminal and type in the following command:
 ```bash
-git clone git@github.com:klefstad-teaching/ics-45c-hw5-<YourGitHubUserName>.git HW6
+git clone git@github.com:klefstad-teaching/ics-45c-hw6-<YourGitHubUserName>.git HW6
 ```
 7. Go to VSCode and open up the `HW6` Folder
 ## Directory Structure
