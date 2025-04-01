@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
 #include <sstream>
 
@@ -37,6 +38,9 @@ TEST(CircleTests, Print) {
 
     std::stringstream out;
     c.print(out);
-
-    EXPECT_STREQ(out.str().c_str(), "foo(3, 2)\n");
+    
+      EXPECT_THAT(
+         out.str().c_str(),
+         testing::MatchesRegex("foo at \\(3, ?2\\) area = [0-9]+(\\.[0-9]+)?\n")
+     );
 }
