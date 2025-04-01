@@ -59,6 +59,7 @@ TEST_F(PictureTests, PrintAll) {
     const auto testcase = [&](Shape const& shape) {
         p.add(shape);
         shape.print(individual);
+        shape.draw(individual);
 
         std::stringstream collective;
         p.print_all(collective);
