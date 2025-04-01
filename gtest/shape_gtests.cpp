@@ -39,8 +39,8 @@ TEST(CircleTests, Print) {
     std::stringstream out;
     c.print(out);
     
-      EXPECT_THAT(
-         out.str().c_str(),
-         testing::MatchesRegex("foo at \\(3, ?2\\) area = [0-9]+(\\.[0-9]+)?\n")
-     );
+    EXPECT_THAT(
+        out.str().c_str(),
+        testing::MatchesRegex("foo at \\(3, ?2\\) area = [0-9]+(\\.[0-9]+)?\n")
+    );
 }
